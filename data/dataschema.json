@@ -1,0 +1,32 @@
+{
+    "type": "object",
+    "properties": {
+        "past_emails": {
+            "title": "Past Emails",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "from": { "type": "string" },
+                    "to": { "type": "array", "items": { "type": "string" } },
+                    "subject": { "type": "string" }
+                },
+                "required": ["from", "to", "subject"]
+            }
+        },
+        "sender": { "type": "string" },
+        "recipient": { "type": "string" },
+        "email_summary": { "type": "string" },
+        "instruction": { "type": "string" },
+        "output": {
+            "type": "object",
+            "properties": {
+                "from": { "type": "string" },
+                "to": { "type": "array", "items": { "type": "string" } },
+                "subject": { "type": "string" }
+            },
+            "required": ["from", "to", "subject"]
+        }
+    },
+    "required": ["past_emails", "sender", "recipient", "email_summary", "instruction", "output"]
+}

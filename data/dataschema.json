@@ -1,32 +1,3 @@
-{
-    "type": "object",
-    "properties": {
-        "past_emails": {
-            "title": "Past Emails",
-            "type": "array",
-            "items": {
-                "type": "object",
-                "properties": {
-                    "from": { "type": "string" },
-                    "to": { "type": "array", "items": { "type": "string" } },
-                    "subject": { "type": "string" }
-                },
-                "required": ["from", "to", "subject"]
-            }
-        },
-        "sender": { "type": "string" },
-        "recipient": { "type": "string" },
-        "email_summary": { "type": "string" },
-        "instruction": { "type": "string" },
-        "output": {
-            "type": "object",
-            "properties": {
-                "from": { "type": "string" },
-                "to": { "type": "array", "items": { "type": "string" } },
-                "subject": { "type": "string" }
-            },
-            "required": ["from", "to", "subject"]
-        }
-    },
-    "required": ["past_emails", "sender", "recipient", "email_summary", "instruction", "output"]
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:c66711afc466247b1c1c19304ba8507258340816f64f3c5e8fdde7f6c61c8d0d
+size 1133

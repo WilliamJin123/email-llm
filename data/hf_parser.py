@@ -5,7 +5,7 @@ from random import randint
 pd.options.display.max_rows = 2000
 pd.options.display.max_columns = 50
 
-INSTRUCTION =  ("You are given a JSON object containing the following information:\n"
+INSTRUCTION =  ( "You are given a JSON object containing the following information:\n"
     "- persona information about the sender and recipient\n"
     "- past_emails: a list of previous emails in the thread, each including a summary for context\n"
     "- email_summary: a summary of the next email the sender is going to write\n\n"
@@ -15,7 +15,10 @@ INSTRUCTION =  ("You are given a JSON object containing the following informatio
     "2. to: the recipient's persona (name and email if available)\n"
     "3. subject: the subject line of the email\n"
     "4. body: the full email body\n\n"
-    "Use the information and the past emails with their summaries to write a realistic and contextually appropriate email.\n")
+    "Use the information and the past emails with their summaries to write a realistic and contextually appropriate email.\n"
+    "You must ensure that **every specific detail** mentioned in the 'email_summary' (such as suggestions, requests, proposed times, locations, or examples) is clearly reflected in the generated email. "
+    "Do not omit, alter, or generalize any information from the 'email_summary'.\n"
+    "The generated email should sound natural, follow normal conversational flow, and match the tone and relationship implied by the past emails.\n")
 
 def load_data(offset = 0, train_size = 5000):
     
@@ -83,7 +86,7 @@ def parse_emails(conversations, summaries, convo_ids):
                 "past_emails": past_emails,
                 "sender": sender,
                 "recipient": recipient,
-                "next_email_summary": summary,
+                "email_summary": summary,
             },
             "output": cur_email
         })

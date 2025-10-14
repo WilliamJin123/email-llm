@@ -25,3 +25,9 @@ I think I was being a dumbass and the prompt specified email_summary but the jso
 Absolute poopoo results. I think the model is overfitting, I am now saving every 500 steps (more frequent) and also checking on my evaluation dataset to ensure it is not overfitting. If this run doesn't work I'm switching to mistral instruct 7b or the qwen3 14b base model. (I clearly don't know what I'm doing).
 
 It is clearly overfitting after checking evaluation loss, will 1/4 the learning rate, try for 1000 steps
+
+Before tomorrow: I am going to try batching data where I normalize length for each batch (pad to longest length) and then use a mask to exclude placeholders from training loss
+
+Will make a separate colab to attempt to tokenize, pad, process data and play around with that tomorrow
+
+Going to base my dataset more on Qwen3_(14B)-Alpaca.ipynb unsloth notebook so I stop trolling. -50 compute tokens already.

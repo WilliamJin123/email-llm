@@ -31,3 +31,5 @@ Before tomorrow: I am going to try batching data where I normalize length for ea
 Will make a separate colab to attempt to tokenize, pad, process data and play around with that tomorrow
 
 Going to base my dataset more on Qwen3_(14B)-Alpaca.ipynb unsloth notebook so I stop trolling. -50 compute tokens already.
+
+Maybe will also increase gradient clipping max_norm from 0.3 to 1 (idk but if im quantizing and already only loading 4-bit and then also normalizing to only 0.3 maybe there is information loss??)

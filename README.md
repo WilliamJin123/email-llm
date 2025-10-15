@@ -41,3 +41,8 @@ New dir preprocessing_alpaca, will reprocess the data into alpaca prompt format 
 Will also now do padding to longest context size per batch and loss masking of padding tokens and input prompt (probably the culprit of overfitting tbh). 
 
 Will then train again but this time on Qwen 3 14B base model specifically (more closely aligned with Unsloth example notebook).
+
+#update 10/15
+
+ts pmo, unsloth isn't working when tokenizing. I expected this to be a failure, but I did a lot of data processing so there's that. Also the qwen thinking model (without any finetuning) can basically do this exact task extremely well given my prompt format. Will probbaly just leverage foundational models, and then try and make an agentic workflow while moving onto other finetuning projects. 0/10
+

@@ -33,3 +33,11 @@ Will make a separate colab to attempt to tokenize, pad, process data and play ar
 Going to base my dataset more on Qwen3_(14B)-Alpaca.ipynb unsloth notebook so I stop trolling. -50 compute tokens already.
 
 Maybe will also increase gradient clipping max_norm from 0.3 to 1 (idk but if im quantizing and already only loading 4-bit and then also normalizing to only 0.3 maybe there is information loss??)
+
+#update 10/14
+
+New dir preprocessing_alpaca, will reprocess the data into alpaca prompt format (instruction, input, output). 
+
+Will also now do padding to longest context size per batch and loss masking of padding tokens and input prompt (probably the culprit of overfitting tbh). 
+
+Will then train again but this time on Qwen 3 14B base model specifically (more closely aligned with Unsloth example notebook).

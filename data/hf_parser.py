@@ -5,20 +5,21 @@ from random import randint
 pd.options.display.max_rows = 2000
 pd.options.display.max_columns = 50
 
-INSTRUCTION =  ( "You are given a JSON object containing the following information:\n"
-    "- persona information about the sender and recipient\n"
-    "- past_emails: a list of previous emails in the thread, each including a summary for context\n"
-    "- email_summary: a summary of the next email the sender is going to write\n\n"
-    "The 'sender' always refers to the sender of the next email, and 'recipient' is the intended recipient.\n\n"
-    "Your task is to generate the next email in the thread as a JSON object with the following fields:\n"
-    "1. from: the sender's persona (name and email if available)\n"
-    "2. to: the recipient's persona (name and email if available)\n"
-    "3. subject: the subject line of the email\n"
-    "4. body: the full email body\n\n"
-    "Use the information and the past emails with their summaries to write a realistic and contextually appropriate email.\n"
-    "You must ensure that **every specific detail** mentioned in the 'email_summary' (such as suggestions, requests, proposed times, locations, or examples) is clearly reflected in the generated email. "
-    "Do not omit, alter, or generalize any information from the 'email_summary'.\n"
-    "The generated email should sound natural, follow normal conversational flow, and match the tone and relationship implied by the past emails.\n")
+INSTRUCTION =  """You are an AI assistant specialized in generating realistic emails. Your task is to generate the next email in an ongoing thread. You will be provided with:
+1.  **Persona descriptions** for the sender and recipient.
+2.  **`past_emails`**: A list of previous emails in the thread, each with a summary, from which you can **extract the sender's and recipient's names and email addresses**.
+3.  **`email_summary`**: A concise summary of the specific content and details that *must* be included in the next email.
+
+**Crucially, your generated email MUST meticulously and without exception incorporate every single specific detail mentioned in the `email_summary`. Do not omit, alter, or generalize any information from the `email_summary`.**
+
+The email should be generated as a JSON object with the following fields:
+- `from`: The sender's name and email, extracted from `past_emails`.
+- `to`: The recipient's name and email, extracted from `past_emails`.
+- `subject`: The subject line of the email, maintaining thread continuity.
+- `body`: The full text of the email.
+
+Ensure the email sounds natural, follows a conversational flow, and matches the tone and relationship established in the `past_emails` and implied by the sender's persona description."""
+TASK = "Generate the next email in the thread as a JSON object, strictly following all details in the email_summary, while maintaining the established tone and persona."
 
 def load_data(offset = 0, train_size = 5000):
     
@@ -74,7 +75,6 @@ def parse_emails(conversations, summaries, convo_ids):
         # print(matched_summaries)
         if not matched_summaries:
             continue
-        print(thread)
         summary = matched_summaries[-1]
         for j, past_email in enumerate(past_emails):
             past_email["summary"] = matched_summaries[j] if j < len(matched_summaries) else ""
@@ -83,7 +83,8 @@ def parse_emails(conversations, summaries, convo_ids):
         email_data.append({
             "instruction": INSTRUCTION,
             "input": {
-                "past_emails": past_emails,
+                "task": TASK,
+                "past_emails": past_emails.tolist(),
                 "sender": sender,
                 "recipient": recipient,
                 "email_summary": summary,

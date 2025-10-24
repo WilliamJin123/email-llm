@@ -46,3 +46,9 @@ Will then train again but this time on Qwen 3 14B base model specifically (more 
 
 ts pmo, unsloth isn't working when tokenizing. I expected this to be a failure, but I did a lot of data processing so there's that. Also the qwen thinking model (without any finetuning) can basically do this exact task extremely well given my prompt format. Will probbaly just leverage foundational models, and then try and make an agentic workflow while moving onto other finetuning projects. 0/10
 
+#update 10/24
+
+shitty ahh midterm season is over, never give up never what? even though I said I would move on, I tried it one more time with base model and Alpaca formatted prompts. Loss looked better, validation loss stagnated past ~1250 steps (overfitting? will check)
+
+Now I will learn how to use VLLM for inference tests for the first time. Probably get this shit done today, hopefully it works, but I am not wasting any more colab credits on this if it doesn't (the thinking model really works quite well for this use case)
+
